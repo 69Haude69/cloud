@@ -1,0 +1,34 @@
+#define trigPin 13
+#define echoPin 12
+#define Vibrator_motor 7
+#define Dc_buzzer 6
+ 
+void setup()
+{ pinMode(trigPin, OUTPUT);
+pinMode(echoPin, INPUT);
+pinMode(Vibrator_motor, OUTPUT);
+pinMode(Dc_buzzer,OUTPUT);
+}
+ 
+void loop()
+{ long duration, distance;
+digitalWrite(trigPin, LOW); 
+delayMicroseconds(2); 
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10); 
+digitalWrite(trigPin, LOW);
+ 
+duration = pulseIn(echoPin, HIGH);
+distance = (duration/2) / 29.1;
+ 
+if (distance < 70) checking if the distance is below 70
+{ 
+digitalWrite(Vibrator_motor,HIGH); // if the distance is below 70 the motor and buzzer gets run at high specification
+digitalWrite(Dc_buzzer,HIGH);
+} else
+{
+digitalWrite(Vibrator_motor,LOW);// if the distance is greater 70 the motor and buzzer gets run at low specification
+digitalWrite(Dc_buzzer,LOW); 
+} delay(500);
+}
+ 
